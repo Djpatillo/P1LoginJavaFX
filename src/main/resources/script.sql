@@ -4,10 +4,10 @@ USE loginjavafx;
 -- Tabla 1: Usuarios
 CREATE TABLE IF NOT EXISTS usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-    correo VARCHAR(100) UNIQUE NOT NULL,
+    username VARCHAR(50) UNIQUE NOT NULL,  -- CAMBIO: De correo a username
     password VARCHAR(100) NOT NULL,
-    nombre VARCHAR(100)
-    );
+    nombre_completo VARCHAR(100)           -- Para mostrar "Hola, Pepe Perez"
+);
 
 -- Tabla 2: Tareas (Relación 1:N con Usuarios)
 CREATE TABLE IF NOT EXISTS tareas (
@@ -38,5 +38,5 @@ CREATE TABLE IF NOT EXISTS tareas_etiquetas (
     );
 
 -- DATOS DE PRUEBA (Para poder hacer login)
-INSERT IGNORE INTO usuarios (correo, password, nombre) VALUES ('admin', '1234', 'Administrador');
-INSERT IGNORE INTO usuarios (correo, password, nombre) VALUES ('pepe', '1234', 'Pepe Usuario');
+INSERT INTO usuarios (username, password, nombre_completo) VALUES ('admin', '1234', 'Administrador del Sistema');
+INSERT INTO usuarios (username, password, nombre_completo) VALUES ('pepe', '1234', 'Pepe García');

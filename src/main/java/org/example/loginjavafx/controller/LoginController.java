@@ -10,14 +10,14 @@ import org.example.loginjavafx.dao.UsuarioDAO;
 import org.example.loginjavafx.model.Usuario;
 
 public class LoginController {
-    @FXML private TextField txtCorreo;
+    @FXML private TextField txtUsuario;
     @FXML private PasswordField txtPassword;
 
     @FXML
     public void onLogin() {
         UsuarioDAO dao = new UsuarioDAO();
         // Intentamos loguear con lo que escribió el usuario
-        Usuario usuario = dao.login(txtCorreo.getText(), txtPassword.getText());
+        Usuario usuario = dao.login(txtUsuario.getText(), txtPassword.getText());
 
         if (usuario != null) {
             abrirPrincipal(usuario);
@@ -35,7 +35,7 @@ public class LoginController {
             org.example.loginjavafx.controller.MainController controller = loader.getController();
             controller.initData(usuario);
 
-            Stage stage = (Stage) txtCorreo.getScene().getWindow();
+            Stage stage = (Stage) txtUsuario.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) { e.printStackTrace(); }

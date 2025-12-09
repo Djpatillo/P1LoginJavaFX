@@ -2,14 +2,17 @@ package org.example.loginjavafx.model;
 
 public class Usuario {
     private int id;
-    private String correo;
-    private String nombre;
+    private String username; // ANTES: correo
+    private String nombreCompleto;
 
-    public Usuario(int id, String correo, String nombre) {
+    public Usuario(int id, String username, String nombreCompleto) {
         this.id = id;
-        this.correo = correo;
-        this.nombre = nombre;
+        this.username = username;
+        this.nombreCompleto = nombreCompleto;
     }
+
+    // Getters
     public int getId() { return id; }
-    public String getNombre() { return nombre; }
+    public String getUsername() { return username; } // Getter actualizado
+    public String getNombreCompleto() { return nombreCompleto; }
 }

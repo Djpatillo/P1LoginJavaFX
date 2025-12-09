@@ -14,7 +14,7 @@
 
     <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Acceso de Usuario" />
 
-    <TextField fx:id="txtCorreo" promptText="Correo electrónico (ej: admin)" />
+    <TextField fx:id="txtUsuario" promptText="Nombre de usuario (ej: pepe)" />
     <PasswordField fx:id="txtPassword" promptText="Contraseña" />
 
     <Button onAction="#onLogin" text="Iniciar Sesión" />

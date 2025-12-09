@@ -39,7 +39,7 @@ public class MainController implements Initializable {
     // Método llamado desde el LoginController
     public void initData(Usuario usuario) {
         this.usuario = usuario;
-        lblUser.setText("Usuario: " + usuario.getNombre());
+        lblUser.setText("Usuario: " + usuario.getNombreCompleto());
         actualizarTabla();
     }
 
