@@ -1,4 +1,4 @@
-package org.example.logoinjavafx;
+package org.example.loginjavafx;
 
 
 import javafx.collections.FXCollections;
@@ -46,7 +46,7 @@ public class MainController implements Initializable {
             // Corregido: Asignamos la contraseña a su propia columna, en lugar de sobreescribir movieColumn
             passwordColumn.setCellValueFactory(cellData -> cellData.getValue().contrasenhaProperty());
         } else {
-            System.err.println("Advertencia: Algunas columnas son nulas. Verifica los fx:id en tu archivo hello-view.fxml");
+            System.err.println("Advertencia: Algunas columnas son nulas. Verifica los fx:id en tu archivo login.fxml");
         }
 
         // 3. Cargar los datos iniciales de la BD

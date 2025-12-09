@@ -1,4 +1,4 @@
-package org.example.logoinjavafx;
+package org.example.loginjavafx;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
