@@ -7,19 +7,19 @@ import javafx.beans.value.ObservableValue;
 public class Usuario {
     // Se cambian los campos String por StringProperty para compatibilidad con JavaFX
     private final StringProperty correo_electronico;
-    private final StringProperty contrasena;
+    private final StringProperty contrasenha;
     private final StringProperty id_usuario;
 
     public Usuario(String correo_electronico, String contrasena, String id_usuario) {
         // Se inicializan las propiedades
         this.correo_electronico = new SimpleStringProperty(correo_electronico);
-        this.contrasena = new SimpleStringProperty(contrasena);
+        this.contrasenha = new SimpleStringProperty(contrasena);
         this.id_usuario = new SimpleStringProperty(id_usuario);
     }
 
-    public Usuario(String correoElectronico, String contraseña) {
+    public Usuario(String correoElectronico, String contrasenha) {
         // Se llama al constructor principal para evitar campos nulos
-        this(correoElectronico, contraseña, "");
+        this(correoElectronico, contrasenha, "");
     }
 
     public String getCorreo_electronico() {
@@ -42,11 +42,11 @@ public class Usuario {
     // Para mantener compatibilidad, este método devuelve ObservableValue, aunque por convención
     // un getter debería devolver String y el método property() devolver el ObservableValue.
     public ObservableValue<String> getContrasena() {
-        return contrasena;
+        return contrasenha;
     }
 
     public void setContrasena(String contrasena) {
-        this.contrasena.set(contrasena);
+        this.contrasenha.set(contrasena);
     }
 
     public ObservableValue<String> id_usuarioProperty() {
@@ -58,6 +58,6 @@ public class Usuario {
     }
 
     public ObservableValue<String> contrasenhaProperty(){
-        return contrasena;
+        return contrasenha;
     }
 }

@@ -36,16 +36,26 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // 2. Configurar las columnas de la tabla
-        // Le dice a la columna 'usuario' que use la propiedad 'usuario' del modelo Favorito.
-        userColumn.setCellValueFactory(cellData -> cellData.getValue().id_usuarioProperty());
-        // Le dice a la columna 'pelicula' que use la propiedad 'pelicula' del modelo Favorito.
-        movieColumn.setCellValueFactory(cellData -> cellData.getValue().correoElectronicoProperty());
+        // Verificamos que los componentes FXML se hayan inyectado correctamente para evitar NullPointerException
+        if (userColumn != null && movieColumn != null && passwordColumn != null) {
+            // Le dice a la columna 'usuario' que use la propiedad 'usuario' del modelo Favorito.
+            userColumn.setCellValueFactory(cellData -> cellData.getValue().id_usuarioProperty());
+            // Le dice a la columna 'pelicula' que use la propiedad 'pelicula' del modelo Favorito.
+            movieColumn.setCellValueFactory(cellData -> cellData.getValue().correoElectronicoProperty());
 
-        // Corregido: Asignamos la contraseña a su propia columna, en lugar de sobreescribir movieColumn
-        passwordColumn.setCellValueFactory(cellData -> cellData.getValue().contrasenhaProperty());
+            // Corregido: Asignamos la contraseña a su propia columna, en lugar de sobreescribir movieColumn
+            passwordColumn.setCellValueFactory(cellData -> cellData.getValue().contrasenhaProperty());
+        } else {
+            System.err.println("Advertencia: Algunas columnas son nulas. Verifica los fx:id en tu archivo hello-view.fxml");
+        }
 
         // 3. Cargar los datos iniciales de la BD
-        loadDataFromDatabase();
+        // Envolvemos en try-catch para que un error de BD no impida iniciar la UI
+        try {
+            loadDataFromDatabase();
+        } catch (Exception e) {
+            System.err.println("Error crítico al cargar datos iniciales: " + e.getMessage());
+        }
     }
 
     /**

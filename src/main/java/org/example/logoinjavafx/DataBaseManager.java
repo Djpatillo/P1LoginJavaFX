@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseManager {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/LoginJavaFX?serverTimezone=UTC";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/loginjavafx?serverTimezone=UTC";
     private static final String USER = "root"; // Ej: "root"
     private static final String PASS = ""; // Ej: "admin"
 
@@ -33,7 +33,7 @@ public class DataBaseManager {
         }
     }
 
-    public static boolean saveUsuario(String id_usuario, String correoElectronico, String contrasena) {
+    public static boolean saveUsuario(String id_usuario, String correoElectronico, String contrasenha) {
         String sql = "INSERT INTO usuarios(id_usuario, correoElectronico, contrasenha) VALUES(?, ?, ?)";
 
         try (Connection conn = getConnection();
@@ -41,7 +41,7 @@ public class DataBaseManager {
 
             pstmt.setString(1, id_usuario);
             pstmt.setString(2, correoElectronico);
-            pstmt.setString(3, contrasena);
+            pstmt.setString(3, contrasenha);
 
             pstmt.executeUpdate();
             return true; // Éxito
