@@ -7,4 +7,6 @@ module org.example.loginjavafx {
 
     opens org.example.loginjavafx to javafx.fxml;
     exports org.example.loginjavafx;
+    exports org.example.loginjavafx.controller;
+    opens org.example.loginjavafx.controller to javafx.fxml;
 }
