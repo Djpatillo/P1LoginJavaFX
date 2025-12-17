@@ -4,7 +4,7 @@ import org.example.loginjavafx.model.Usuario;
 import java.sql.*;
 
 public class UsuarioDAO {
-    public Usuario login(String user, String password) { // Cambio nombre variable entrada
+    public Usuario login(String user, String password) {
 
         String sql = "SELECT * FROM usuarios WHERE username = ? AND password = ?";
 

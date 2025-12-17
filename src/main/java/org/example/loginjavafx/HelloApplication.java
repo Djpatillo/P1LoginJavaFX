@@ -16,10 +16,8 @@ public class HelloApplication extends Application {
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
-            // Capturamos cualquier error durante la carga de la UI
-            e.printStackTrace(); // Imprime el error detallado en consola para el desarrollador
-            
-            // Muestra una alerta visual al usuario
+            e.printStackTrace();
+
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Crítico");
             alert.setHeaderText("No se pudo iniciar la aplicación");

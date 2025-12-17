@@ -31,7 +31,7 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
             Scene scene = new Scene(loader.load());
 
-            // PASO CLAVE: Pasar el usuario a la siguiente ventana
+            // Pasar el usuario a la siguiente ventana
             org.example.loginjavafx.controller.MainController controller = loader.getController();
             controller.initData(usuario);
 

@@ -26,16 +26,49 @@ public class TareaDAO {
         return lista;
     }
 
-    public void guardar(Tarea t, int idUsuario) {
-        String sql = "INSERT INTO tareas (titulo, prioridad, progreso, fecha_limite, id_usuario) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, t.getTitulo());
-            stmt.setString(2, t.getPrioridad());
-            stmt.setInt(3, t.getProgreso());
-            stmt.setDate(4, Date.valueOf(t.getFecha_limite()));
-            stmt.setInt(5, idUsuario);
-            stmt.executeUpdate();
-        } catch (SQLException e) { e.printStackTrace(); }
+    public void guardar(Tarea t, int idUsuario, int idEtiqueta) {
+        String sqlTarea = "INSERT INTO tareas (titulo, prioridad, progreso, fecha_limite, id_usuario) VALUES (?, ?, ?, ?, ?)";
+        String sqlRelacion = "INSERT INTO tareas_etiquetas (id_tarea, id_etiqueta) VALUES (?, ?)";
+
+        Connection conn = null;
+        PreparedStatement stmtTarea = null;
+        PreparedStatement stmtRelacion = null;
+        ResultSet generatedKeys = null;
+
+        try {
+            conn = DatabaseConnection.getConnection();
+            conn.setAutoCommit(false);
+
+            // 1. Insertar Tarea
+            stmtTarea = conn.prepareStatement(sqlTarea, Statement.RETURN_GENERATED_KEYS);
+            stmtTarea.setString(1, t.getTitulo());
+            stmtTarea.setString(2, t.getPrioridad());
+            stmtTarea.setInt(3, t.getProgreso());
+            stmtTarea.setDate(4, Date.valueOf(t.getFecha_limite()));
+            stmtTarea.setInt(5, idUsuario);
+            stmtTarea.executeUpdate();
+
+            // 2. Obtener ID generado
+            generatedKeys = stmtTarea.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int idNuevaTarea = generatedKeys.getInt(1);
+
+
+                stmtRelacion = conn.prepareStatement(sqlRelacion);
+                stmtRelacion.setInt(1, idNuevaTarea);
+                stmtRelacion.setInt(2, idEtiqueta);
+                stmtRelacion.executeUpdate();
+            }
+            conn.commit();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            if (conn != null) try { conn.rollback(); } catch (SQLException ex) { ex.printStackTrace(); }
+        } finally {
+            try { if (generatedKeys != null) generatedKeys.close(); } catch (SQLException e) {}
+            try { if (stmtTarea != null) stmtTarea.close(); } catch (SQLException e) {}
+            try { if (stmtRelacion != null) stmtRelacion.close(); } catch (SQLException e) {}
+            try { if (conn != null) conn.close(); } catch (SQLException e) {}
+        }
     }
 }

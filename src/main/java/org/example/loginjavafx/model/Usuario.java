@@ -2,7 +2,7 @@ package org.example.loginjavafx.model;
 
 public class Usuario {
     private int id;
-    private String username; // ANTES: correo
+    private String username;
     private String nombreCompleto;
 
     public Usuario(int id, String username, String nombreCompleto) {

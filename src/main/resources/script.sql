@@ -40,3 +40,10 @@ CREATE TABLE IF NOT EXISTS tareas_etiquetas (
 -- DATOS DE PRUEBA (Para poder hacer login)
 INSERT INTO usuarios (username, password, nombre_completo) VALUES ('admin', '1234', 'Administrador del Sistema');
 INSERT INTO usuarios (username, password, nombre_completo) VALUES ('pepe', '1234', 'Pepe García');
+
+-- Insertamos las categorías disponibles
+INSERT INTO etiquetas (nombre) VALUES ('Trabajo');
+INSERT INTO etiquetas (nombre) VALUES ('Universidad');
+INSERT INTO etiquetas (nombre) VALUES ('Casa');
+INSERT INTO etiquetas (nombre) VALUES ('Urgente');
+INSERT INTO etiquetas (nombre) VALUES ('Ocio');
